@@ -10,8 +10,7 @@ import dataset
 # default / environment variables
 DATABASE = os.environ.get("DATABASE", "sqlite:////data/speedtest.db")
 PORT = os.environ.get("PORT", "8000")
-SERVERID = os.environ.get("SERVERID", None)
-
+SERVERID = '17396'
 # commandline parser
 p = argparse.ArgumentParser()
 p.add_argument("-d", dest="database", help="database connection uri (env:DATABASE)", default=DATABASE)
