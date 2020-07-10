@@ -11,21 +11,21 @@ The results can optionally be displayed through a simple Flask webserver.
 ## USAGE
 
 ### CONTAINER
-<a href="https://hub.docker.com/r/ansemjo/speedtest/builds">
+<a href="https://hub.docker.com/r/robpot891/speedtest/builds">
 
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/ansemjo/speedtest)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ansemjo/speedtest)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/robpot891/speedtest)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/robpot891/speedtest)
 
 </a>
 
 The main distribution method is the automatically built container at
-[ansemjo/speedtest](https://hub.docker.com/r/ansemjo/speedtest).
+[robpot891/speedtest](https://hub.docker.com/r/robpot891/speedtest).
 Obviously, you need to have a container runtime like `docker` or `podman`
 installed to run the container.
 
 To start the container with default settings run:
 
-    docker run -d -p 8000:8000 ansemjo/speedtest
+    docker run -d -p 8000:8000 robpot891/speedtest
 
 This will take a measurement every 15 minutes, save them to a SQLite database
 in `/data/speedtests.db` and run the webserver on port `8000`. Visit http://localhost:8000
@@ -39,20 +39,20 @@ URI might look like this:
     docker run -d \
       -p 8000:8000 \
       -e DATABASE=postgresql://user:password@hostname:5432/database' \
-      ansemjo/speedtest
+      robpot891/speedtest
 
 You can modify the measurement schedule with the environment variables `MINUTES` and
 `SCHEDULE`. The former takes a measurement every `n` minutes and the latter may define
 an entirely custom cron schedule like "four times a day":
 
-    docker run -d -p 8000:8000 -e SCHEDULE="0 3,9,15,21 * * *" ansemjo/speedtest
+    docker run -d -p 8000:8000 -e SCHEDULE="0 3,9,15,21 * * *" robpot891/speedtest
 
 The webserver is a single-threaded Flask application, which may not be suitable
 for production usage. To disable the webserver completely set the `PORT` environment
 variable to an empty string. This will only take measurements and save them to the
 database.
 
-    docker run -d -e PORT= -v speedtests:/data ansemjo/speedtest
+    docker run -d -e PORT= -v speedtests:/data robpot891/speedtest
 
 To dump the results as CSV from a running container use the `dump` command:
 
